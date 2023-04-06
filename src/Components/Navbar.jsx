@@ -13,6 +13,7 @@ const Navbar = () => {
       <Link to ="/favs">Favs</Link>
       {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
       <button>Change theme</button>
+     
     </nav>
   )
 }

@@ -160,7 +160,8 @@ const ContactForm = () => {
         </Card>
       )}
 
-      <Snackbar open={isSubmitted} autoHideDuration={3000}>
+      <Snackbar open={isSubmitted}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }} autoHideDuration={3000}>
         <Alert onClose={handleClose}>
           Gracias por tu mensaje {name}, nos comunicaremos contigo a la brevedad
         </Alert>

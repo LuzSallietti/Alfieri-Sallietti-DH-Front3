@@ -10,8 +10,8 @@ const Contact = () => {
       {/*
       <h2>Want to know more?</h2>
       <p>Send us your questions and we will contact you</p>
+      <h1>Acá va el Form</h1>      
       */}
-      <h1>Acá va el Form</h1>
       <ContactForm/>
     </div>
   )
