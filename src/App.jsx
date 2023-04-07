@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ContextProvider from "./Components/utils/global.context";
-//import Footer from "./Components/Footer";
-//import Navbar from "./Components/Navbar";
 import { routes, Login, Layout } from "./Navigation/Routes";
 import { ProtectedRoutes } from "./Navigation/ProtectedRoutes";
 
