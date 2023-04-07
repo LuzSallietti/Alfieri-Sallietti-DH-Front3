@@ -53,7 +53,7 @@ const Example = () => {
        <Grid container spacing={2} >
          {values.map((dentist) => (
           //return <HomeCardExample key={dentist.id}  //reemplazo el renderizado por una MUICard
-          <Grid item xs={12} md={4} key={dentist.id}  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+           <Grid item xs={12} md={4} key={dentist.id}  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
            <MUICard          
            dentist={dentist}
            dispatch={dispatch}

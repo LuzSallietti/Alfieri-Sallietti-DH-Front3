@@ -23,7 +23,7 @@ import Button from '@mui/material/Button';
 
 
 const drawerWidth = 240;
-const navItems = [<Link style={{ color: 'white' }}  to ="/home">Home</Link>, <Link style={{ color: 'white' }} to ="/contact">Contact</Link>, <Link style={{ color: 'white' }}  to ="/favs">Favs</Link>];
+const navItems = [<Link  style={{ color:"white"}} to ="/home">Home</Link>, <Link style={{ color:"white"}} to ="/contact">Contact</Link>, <Link style={{ color:"white"}}  to ="/favs">Favs</Link>];
 
 
 function MUINavBar(props) {
@@ -42,7 +42,7 @@ function MUINavBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem  key={item} disablePadding>
+          <ListItem  key={item} disablePadding >
             <ListItemButton  sx={{ textAlign: 'center' }}>
               <ListItemText   primary={item}  />
             </ListItemButton>
@@ -77,9 +77,9 @@ function MUINavBar(props) {
           >
             Odonto Index
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'block' }}}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
+              <Button key={item}>
                 {item}
               </Button>
             ))}
