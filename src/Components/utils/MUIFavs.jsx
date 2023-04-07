@@ -1,7 +1,6 @@
 import React from "react";
 import { useReducer } from "react";
-import { initialState, reducer } from "./Example";
-import MUIDetailsCard from "./MUIFavCard";
+import { initialState, reducer } from "./MUIExample";
 import Grid from "@mui/material/Grid"
 import MUIFavCard from "./MUIFavCard";
 

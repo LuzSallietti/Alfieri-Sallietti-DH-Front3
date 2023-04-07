@@ -18,25 +18,29 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 
-const drawerWidth = 240;
-const navItems = [<Link  style={{ color:"white"}} to ="/home">Home</Link>, <Link style={{ color:"white"}} to ="/contact">Contact</Link>, <Link style={{ color:"white"}}  to ="/favs">Favs</Link>];
-
+const drawerWidth = "100%";
 
 function MUINavBar(props) {
+  
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   
+  const navItems = [
+  <Link  style={{color:"#fff"}} to ="/home">Home</Link>,
+  <Link  style={{color:"#fff"}} to ="/contact">Contact</Link>,
+  <Link  style={{color:"#fff"}} to ="/favs">Favs</Link>];
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+  
+
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', backgroundColor:"#1976d2" }}>
+      <Typography variant="h6" sx={{ my: 2, color:"#fff"   }}>
         Odonto Index
       </Typography>
       <Divider />
