@@ -4,16 +4,17 @@ import Login from '../Routes/Login'
 //import Favs from '../Routes/Favs'
 //import Home from '../Routes/Home'
 
-import Example from '../Components/utils/Example'
+
 import MUIFavs from '../Components/utils/MUIFavs'
 import MUILogin from '../Components/MUILogin'
+import MUIExample from '../Components/utils/MUIExample'
 import Layout from '../Components/Layout/Layout'
 //import Login from '../Components/utils/Example'
 export const routes = [
     {
         id: 1,
         path: "/home",
-        Component: Example
+        Component: MUIExample
     },
     {
         id: 2,

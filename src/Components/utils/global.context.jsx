@@ -50,7 +50,7 @@ const [state, dispatch] = useReducer(handleDispatch, initialState);
 const contextProperties = { state, dispatch }
 
   return (
-    <ContextGlobal.Provider value={{contextProperties}}>
+    <ContextGlobal.Provider value={contextProperties}>
       {children}
     </ContextGlobal.Provider>
   );

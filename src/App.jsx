@@ -4,6 +4,7 @@ import ContextProvider from "./Components/utils/global.context";
 //import Footer from "./Components/Footer";
 //import Navbar from "./Components/Navbar";
 import { routes, Login, Layout } from "./Navigation/Routes";
+import { ProtectedRoutes } from "./Navigation/ProtectedRoutes";
 
 function App() {
   return (
@@ -12,10 +13,12 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route element={<Layout />}>
-              {routes.map(({ id, path, Component }) => (
-                <Route key={id} path={path} element={<Component />} />
-              ))}
+            <Route element={<ProtectedRoutes />}>
+              <Route element={<Layout />}>
+                {routes.map(({ id, path, Component }) => (
+                  <Route key={id} path={path} element={<Component />} />
+                ))}
+              </Route>
             </Route>
             <Route path="/" element={<Navigate to="/login" />} />
           </Routes>
