@@ -1,16 +1,19 @@
 import Contact from '../Routes/Contact'
 import Detail from '../Routes/Detail'
-import Favs from '../Routes/Favs'
-import Home from '../Routes/Home'
+import Login from '../Routes/Login'
+//import Favs from '../Routes/Favs'
+//import Home from '../Routes/Home'
 
-import MUIExample from '../Components/utils/MUIExample'
+import Example from '../Components/utils/Example'
 import MUIFavs from '../Components/utils/MUIFavs'
-
+import MUILogin from '../Components/MUILogin'
+import Layout from '../Components/Layout/Layout'
+//import Login from '../Components/utils/Example'
 export const routes = [
     {
         id: 1,
         path: "/home",
-        Component: MUIExample
+        Component: Example
     },
     {
         id: 2,
@@ -27,5 +30,5 @@ export const routes = [
         path: "/dentist/:id",
         Component: Detail
     }
-   
 ];
+export { Login, Layout }
