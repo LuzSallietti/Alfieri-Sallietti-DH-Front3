@@ -1,11 +1,12 @@
 import React from "react";
 import Typography from '@mui/material/Typography';
-import { useReducer } from "react";
+import { useReducer, useState, useEffect } from "react";
 import HomeCardExample from "./HomeCardExample";
 import { useGetData } from "../../hooks/useGetData";
 import MUICard from "./MUICard";
 import Grid from "@mui/material/Grid"
-import Item from "@mui/material/Grid"
+import MUILoading from "./MUILoading";
+
 
 
 
@@ -41,19 +42,27 @@ export function reducer(state, action) {
 const Example = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const {values} = useGetData(endpoint);
- 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    values ? setIsLoading(false): setIsLoading(true)
+})
+
     /*!!!-->EN EL HOME NO MAPEARÉ los favorites sino la data de la API!*/
  
  return (
    <main className="">
-     <Typography gutterBottom variant="h4" component="div" margin="5vh 0" textAlign="center">
-      Staff</Typography>
-     <div className="card-grid" >
+     {isLoading ? <MUILoading /> : null}
+     
        {values && 
+       <>
+       <Typography gutterBottom variant="h4" component="div" margin="5vh 0" textAlign="center">
+       Staff</Typography>
+      <div className="card-grid" >
        <Grid container spacing={2} >
          {values.map((dentist) => (
           //return <HomeCardExample key={dentist.id}  //reemplazo el renderizado por una MUICard
-           <Grid item xs={12} md={4} key={dentist.id}  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+           <Grid item xs={12} md={4} key={dentist.id}  style={{ display: 'flex', justifyContent: 'center'}}>
            <MUICard          
            dentist={dentist}
            dispatch={dispatch}
@@ -62,8 +71,12 @@ const Example = () => {
             </Grid>
          ))}
          </Grid>
+         </div>
+         </>
+         
          }
-     </div>
+
+     
    </main>
  )    
 };

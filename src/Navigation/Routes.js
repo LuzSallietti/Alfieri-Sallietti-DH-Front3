@@ -3,14 +3,14 @@ import Detail from '../Routes/Detail'
 import Favs from '../Routes/Favs'
 import Home from '../Routes/Home'
 
-import Example from '../Components/utils/Example'
+import MUIExample from '../Components/utils/MUIExample'
 import MUIFavs from '../Components/utils/MUIFavs'
-import Login from '../Components/utils/Example'
+
 export const routes = [
     {
         id: 1,
         path: "/home",
-        Component: Example
+        Component: MUIExample
     },
     {
         id: 2,

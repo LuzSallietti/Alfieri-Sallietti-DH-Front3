@@ -18,18 +18,10 @@ import doctor from "../../img/doctor.jpg";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "@mui/material";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+
 
 export default function MUICard({ dentist, dispatch, btnText }) {
+  //esto de abajo debe manejarse en el estado GLOBAL
   const [editClicked, setEditClicked] = React.useState(false);
 
   //lógica del icono FAV
@@ -63,33 +55,15 @@ export default function MUICard({ dentist, dispatch, btnText }) {
 
   return (
     <Card sx={{ width: 350 , height:"60vh", margin:"0"}} className="card" onClick={showDetails}>
-      <CardHeader
+     
+      <CardHeader style={{ width:"100%"}}
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             {dentist.name.charAt(0)}
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={"Dr. " + dentist.name}
-        subheader={dentist.address.city}
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image={doctor}
-        alt="doctor"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {dentist.company.catchPhrase}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <Tooltip title="a favs">
+          <Tooltip title="add fav">
         <IconButton
           aria-label="add to favorites"
           onClick={handleEditClick}
@@ -99,7 +73,23 @@ export default function MUICard({ dentist, dispatch, btnText }) {
           sx={{ color: editClicked ? "red" : "inherit" }} />
         </IconButton>
         </Tooltip>
-      </CardActions>
+        }
+        title={"Dr. " + dentist.name}
+        subheader={dentist.address.city}
+        />
+        
+      <CardMedia
+        component="img"
+        height="194"
+        image={doctor}
+        alt="doctor"
+      />
+      <CardContent style={{width:"100%"}}>
+        <Typography variant="body2" color="text.secondary" >
+          {dentist.company.catchPhrase}
+        </Typography>
+      </CardContent>
+      
     </Card>
   )
 }

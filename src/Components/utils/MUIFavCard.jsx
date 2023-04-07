@@ -6,9 +6,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import doctor from "../../img/doctor.jpg";
-import { Padding } from '@mui/icons-material';
-
-
+import { Tooltip } from "@mui/material"
+import IconButton from "@mui/material/IconButton";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 
 
@@ -28,8 +28,17 @@ export default function MUIFavCard({dentist, dispatch, btnText}) {
     console.log("pasé por RemoveFav")
     dispatch({ type: "REMOVE_FAV", payload: dentist.id })
   }
+  //esto de abajo debe manejarse en el estado GLOBAL
+  const [editClicked, setEditClicked] = React.useState(false);
+
+
   
-  
+  const handleEditClick = (event) => {
+    event.stopPropagation();
+    setEditClicked(!editClicked);
+    btnText === "AddFav" ? addFav(event, dentist, dispatch) : removeFav(event, dentist, dispatch);
+    //editClicked ? addFav(event,dentist, dispatch) : removeFav(event,dentist,dispatch);
+  };
  
 
   
@@ -42,7 +51,7 @@ export default function MUIFavCard({dentist, dispatch, btnText}) {
       />
       
       <CardContent >
-        <Typography gutterBottom variant="h5" component="div" sx={{textAlign:"center", padding:"15px 0",margin:"0", width:"100%"}}>
+        <Typography gutterBottom variant="h6" component="div" sx={{textAlign:"left", padding:"15px 0",margin:"0", width:"100%"}}>
           {dentist.name}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{paddingBottom:"5px"}}>
@@ -59,6 +68,16 @@ export default function MUIFavCard({dentist, dispatch, btnText}) {
         </Typography>
       </CardContent>
       <CardActions>
+      <Tooltip title="remove fav">
+        <IconButton
+          aria-label="add to favorites"
+          onClick={handleEditClick}
+          className="favButton"
+        >
+          <FavoriteIcon 
+          sx={{ color: editClicked ? "red" : "inherit" }} />
+        </IconButton>
+        </Tooltip>
         <Button size="small" 
          onClick={(event) => {
           event.stopPropagation();
