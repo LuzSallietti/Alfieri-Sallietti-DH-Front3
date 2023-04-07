@@ -1,6 +1,6 @@
 import React from 'react'
 import ContactForm from '../Components/ContactForm';
-
+import Login from '../Components/Login';
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
