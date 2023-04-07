@@ -4,7 +4,7 @@ import Favs from '../Routes/Favs'
 import Home from '../Routes/Home'
 
 import Example from '../Components/utils/Example'
-import FavsExample from '../Components/utils/FavsExample'
+import MUIFavs from '../Components/utils/MUIFavs'
 
 export const routes = [
     {
@@ -20,7 +20,7 @@ export const routes = [
     {
         id: 3,
         path: "/favs",
-        Component: FavsExample
+        Component: MUIFavs
     },
     {
         id: 4,

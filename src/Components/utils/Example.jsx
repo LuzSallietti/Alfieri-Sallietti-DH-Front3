@@ -2,7 +2,9 @@ import React from "react";
 import { useReducer } from "react";
 import HomeCardExample from "./HomeCardExample";
 import { useGetData } from "../../hooks/useGetData";
+import MUICard from "./MUICard";
 export const endpoint = "https://jsonplaceholder.typicode.com/users";
+
 
 //Este estado inicial (su propiedad favorites) lo podemos combinar con el initialState del contexto global??
 
@@ -42,7 +44,8 @@ const Example = () => {
      <div className="card-grid">
        {values &&
          values.map((dentist) => {
-           return <HomeCardExample key={dentist.id}
+           return <MUICard key={dentist.id}
+           //return <HomeCardExample key={dentist.id}
            dentist={dentist}
            dispatch={dispatch}
            btnText={"AddFav"}
