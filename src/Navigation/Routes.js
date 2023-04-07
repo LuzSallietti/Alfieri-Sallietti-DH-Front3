@@ -1,11 +1,14 @@
 import Contact from '../Routes/Contact'
 import Detail from '../Routes/Detail'
-import Favs from '../Routes/Favs'
-import Home from '../Routes/Home'
+import Login from '../Routes/Login'
+//import Favs from '../Routes/Favs'
+//import Home from '../Routes/Home'
 
 import Example from '../Components/utils/Example'
 import MUIFavs from '../Components/utils/MUIFavs'
-import Login from '../Components/utils/Example'
+import MUILogin from '../Components/MUILogin'
+import Layout from '../Components/Layout/Layout'
+//import Login from '../Components/utils/Example'
 export const routes = [
     {
         id: 1,
@@ -27,5 +30,5 @@ export const routes = [
         path: "/dentist/:id",
         Component: Detail
     }
-   
 ];
+export { Login, Layout }

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import {ContextGlobal} from "./utils/global.context";
 import {
   Card,
   CardContent,
@@ -7,27 +9,32 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const MUILogin = () => {
   //Aqui deberan implementar el form completo con sus validaciones
+  const navigate = useNavigate();
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [name, setName] = useState("");
+  
 
-  const initialValues = {
+  //revisar esto con Néstor!
+  const [values, setValues] = useState({
     email: "",
     password: "",
-  };
+  });
+  const { dispatch } = useContext(ContextGlobal);
 
   const onSubmit = (values, props) => {
-    console.log(values.nombre);
-    setName(values.nombre);
-    props.resetForm();
-    setIsSubmitted(true);
+    
+    console.log(values.email);
+    console.log(values.password);
+    if (values.email && values.password) {
+      //dispatch({ type: "LOGGIN", payload: values.email });
+    }
+    console.log(dispatch)
+    props.resetForm(); //no sería necesario?
+    setIsSubmitted(true); ///borrar
   };
 
   const validationSchema = Yup.object().shape({
@@ -58,7 +65,7 @@ const MUILogin = () => {
               Ingresa tus datos
             </Typography>
             <Formik
-              initialValues={initialValues}
+              initialValues={values}
               validationSchema={validationSchema}
               onSubmit={onSubmit}
             >

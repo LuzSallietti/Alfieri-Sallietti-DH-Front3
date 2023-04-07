@@ -1,24 +1,26 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Footer from "./Components/Footer";
-import Navbar from "./Components/Navbar";
-import { routes } from "./Navigation/Routes";
-import MUINavBar from "./Components/MUINavBar"
-import MUIFooter from "./Components/MUIFooter";
+import ContextProvider from "./Components/utils/global.context";
+//import Footer from "./Components/Footer";
+//import Navbar from "./Components/Navbar";
+import { routes, Login, Layout } from "./Navigation/Routes";
+
 function App() {
   return (
     <div className="App">
-      {/*Nos falta anidar todo dentro del <Context/> que vamos a crear y exportar */}
-      <BrowserRouter>
-        <MUINavBar />
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
-          {routes.map(({ id, path, Component }) => (
-            <Route key={id} path={path} element={<Component />} />
-          ))}
-        </Routes>
-        <MUIFooter />
-      </BrowserRouter>
+      <ContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route element={<Layout />}>
+              {routes.map(({ id, path, Component }) => (
+                <Route key={id} path={path} element={<Component />} />
+              ))}
+            </Route>
+            <Route path="/" element={<Navigate to="/login" />} />
+          </Routes>
+        </BrowserRouter>
+      </ContextProvider>
     </div>
   );
 }

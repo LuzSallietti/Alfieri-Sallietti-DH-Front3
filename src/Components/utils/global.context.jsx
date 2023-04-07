@@ -1,31 +1,59 @@
-import { createContext, useState, useMemo } from "react";
-
-export const initialState = {theme: "", data: []}
-
-export const ContextGlobal = createContext(undefined);
+import { createContext, useState, useMemo, useReducer } from "react";
+import { removeFromStorage, addInStorage } from './helpers'
 
 
-/*Paso 3: Implementación del Contexto Global
-Una vez que ya tenemos toda la estructura de nuestra aplicación podemos pasar a consumir la API realizando una llamada por fetch o axios.
+export const ContextGlobal = createContext({});
 
-Deberán guardar dicha información en un contexto global, junto con el theme de la app.
-Utilizando useReducer crear los métodos necesarios para el manejo de su comportamiento (cambio de theme de la App y guardado de la respuesta de la API en el Contexto). */
+const handleDispatch = (state, { type, payload }) => {
+  switch (type) {
+      case "LOGGIN":
+          sessionStorage.setItem("token", JSON.stringify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"));
+          return {
+              ...state,
+              isLogged: true,
+              user: payload
+          }
+      case "LOGOUT":
+          localStorage.clear();
+          sessionStorage.clear();
+          return {
+              ...state,
+              isLogged: false,
+              user: null
+          }
+      case "FAVS":
+          //AQUÍ VA LA LÓGICA PARA VERIFICAR SI EL ELEMENTO YA SE ENCUENTRA
+          const doesExist = state.data.some(dentist => dentist.id === payload.id);
+          doesExist ? removeFromStorage(state, payload) : addInStorage(state, payload);
+          return doesExist ? {
+              ...state,
+              data: removeFromStorage(state, payload)
+          } : {
+              ...state,
+              data: addInStorage(state, payload)
+          }
+      default:
+          return state;
+  }
+}
 
-
-export const ContextProvider = ({ children }) => {
+const ContextProvider = ({ children }) => {
   //Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
 
-  const [globalContext, setGlobalContext] = useState(initialState);
-  const handleTheme = () =>{
-    //la funcion seteadora del tema (cambio de light a dark)
-  }
-  const handleData = () => {
-    //la funcion seteadora de los datos provenientes de la API
-  }
+const initialState = {
+    isLogged: !!sessionStorage.getItem("token"),    
+    data: JSON.parse(localStorage.getItem("favorites")) ?? [],
+    theme: "light" //falta esta implementacion
+};
+const [state, dispatch] = useReducer(handleDispatch, initialState);
+
+const contextProperties = { state, dispatch }
 
   return (
-    <ContextGlobal.Provider value={{}}>
+    <ContextGlobal.Provider value={{contextProperties}}>
       {children}
     </ContextGlobal.Provider>
   );
 };
+
+export default ContextProvider;
