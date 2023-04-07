@@ -1,8 +1,14 @@
 import React from "react";
+import Typography from '@mui/material/Typography';
 import { useReducer } from "react";
 import HomeCardExample from "./HomeCardExample";
 import { useGetData } from "../../hooks/useGetData";
 import MUICard from "./MUICard";
+import Grid from "@mui/material/Grid"
+import Item from "@mui/material/Grid"
+
+
+
 export const endpoint = "https://jsonplaceholder.typicode.com/users";
 
 
@@ -40,17 +46,23 @@ const Example = () => {
  
  return (
    <main className="">
-     <h1>Home</h1>
-     <div className="card-grid">
-       {values &&
-         values.map((dentist) => {
-           return <MUICard key={dentist.id}
-           //return <HomeCardExample key={dentist.id}
+     <Typography gutterBottom variant="h4" component="div" margin="5vh 0" textAlign="center">
+      Staff</Typography>
+     <div className="card-grid" >
+       {values && 
+       <Grid container spacing={2} >
+         {values.map((dentist) => (
+          //return <HomeCardExample key={dentist.id}  //reemplazo el renderizado por una MUICard
+           <Grid item xs={12} md={4} key={dentist.id}  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+           <MUICard          
            dentist={dentist}
            dispatch={dispatch}
            btnText={"AddFav"}
-            />;
-         })}
+            />
+            </Grid>
+         ))}
+         </Grid>
+         }
      </div>
    </main>
  )    

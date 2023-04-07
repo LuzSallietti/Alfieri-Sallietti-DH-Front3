@@ -11,21 +11,30 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box'
 import doctor from "../img/doctor.jpg";
-
-
+import Button from '@mui/material/Button'
+import { useNavigate } from 'react-router-dom';
 
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
-  
+  const navigate = useNavigate();
   const routeParams = useParams();
   const {values} = useGetData(`${endpoint}/${routeParams.id}`);
   
+const handleVolver = () => { 
+  navigate(-1);
+}
+
+
   return (
     values && (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-      <Card sx={{ maxWidth: 345 }}>
+      <>
+      
+      <Box display="flex" flexDirection="column" justifyContent="flexStart" alignItems="center" height="75vh">
+      <Typography gutterBottom variant="h4" component="div" margin="5vh 0">
+      Contacto:</Typography>
+      <Card sx={{ width: 250 }}>
       <CardMedia
         sx={{ height: 200 }}
         image={doctor}
@@ -45,28 +54,17 @@ const Detail = () => {
           {values.address.city}
         </Typography>
       </CardContent>
-      <CardActions>
-       
-        
+      <CardActions style={{display:"flex", alignItems:"center", justifyContent:"flex-end"}}>
+      <Button size="small" onClick={handleVolver}>Volver</Button>
+     
       </CardActions>
     </Card>
     </Box>
+    </>
     )
+    
   );
 };
 
 export default Detail;
 
-/*
-<>
-        <h1>Detail Dentist id </h1>*/
-        {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
-        {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
-  /*      <div>
-          <h3>{values.name}</h3>
-          <p>{values.email}</p>
-          <p>{values.phone}</p>
-          <p>{values.website}</p>
-        </div>
-      </>
-*/

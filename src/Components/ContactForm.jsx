@@ -36,31 +36,31 @@ const ContactForm = () => {
     setIsSubmitted(false);
   }
   const validationSchema = Yup.object().shape({
-    nombre: Yup.string().min(" 5 ").required("completar"),
-    apellido: Yup.string().min("5").required("completar"),
+    nombre: Yup.string().min(" 3 ").required("completar"),
+    apellido: Yup.string().min("3").required("completar"),
     email: Yup.string().email("Ingrese un email válido").required("completar"),
     telefono: Yup.number("ingrese un numero válido").required("completar"),
   });
   return (
-    <div>
-      {!isSubmitted && (
+    <div >
+      
         <Card
-          style={{
-            maxWidth: 450,
-            margin: "0 auto",
-            padding: "20px 5px",
+          style={{            
+            maxWidth: 380,
+            margin: "auto",
+            padding: "5px",
             textAlign: "center",
           }}
         >
-          <CardContent>
-            <Typography variant="h5" gutterBottom>
+          <CardContent style={{ height:"75vh"}} >
+            <Typography variant="h5">
               Contacta con nosotros!
             </Typography>
             <Typography
               variant="body2"
               component="p"
-              gutterBottom
               color="textSecondary"
+              marginBottom="4vh"
             >
               Completa tus datos y envía tu mensaje
             </Typography>
@@ -70,7 +70,7 @@ const ContactForm = () => {
               onSubmit={onSubmit}
             >
               {(props) => (
-                <Form style={{ minHeight: 400 }}>
+                <Form style={{ minHeight: 380 }}>
                   <Grid container spacing={1}>
                     <Grid xs={12} sm={6} item>
                       <Field
@@ -158,14 +158,19 @@ const ContactForm = () => {
             </Formik>
           </CardContent>
         </Card>
-      )}
-
-      <Snackbar open={isSubmitted}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }} autoHideDuration={3000}>
-        <Alert onClose={handleClose}>
-          Gracias por tu mensaje {name}, nos comunicaremos contigo a la brevedad
-        </Alert>
-      </Snackbar>
+      
+      <div >
+        <Snackbar
+          open={isSubmitted}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          autoHideDuration={3000}
+        >
+          <Alert onClose={handleClose}>
+            Gracias por tu mensaje {name}, nos comunicaremos contigo a la
+            brevedad
+          </Alert>
+        </Snackbar>
+      </div>
     </div>
   );
 };

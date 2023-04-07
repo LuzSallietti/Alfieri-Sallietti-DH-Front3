@@ -16,6 +16,7 @@ import { useState } from "react";
 //imports del componente Card
 import doctor from "../../img/doctor.jpg";
 import { useNavigate } from "react-router-dom";
+import { Tooltip } from "@mui/material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -61,7 +62,7 @@ export default function MUICard({ dentist, dispatch, btnText }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="card" onClick={showDetails}>
+    <Card sx={{ width: 350 , height:"60vh", margin:"0"}} className="card" onClick={showDetails}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -88,6 +89,7 @@ export default function MUICard({ dentist, dispatch, btnText }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
+        <Tooltip title="a favs">
         <IconButton
           aria-label="add to favorites"
           onClick={handleEditClick}
@@ -96,7 +98,8 @@ export default function MUICard({ dentist, dispatch, btnText }) {
           <FavoriteIcon 
           sx={{ color: editClicked ? "red" : "inherit" }} />
         </IconButton>
+        </Tooltip>
       </CardActions>
     </Card>
-  );
+  )
 }
