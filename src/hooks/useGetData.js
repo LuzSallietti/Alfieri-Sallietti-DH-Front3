@@ -10,7 +10,7 @@ export const useGetData = (endpoint) => {
             setValues(data);
         })
         .catch((error)=>{
-            console.error(error);
+            alert(error);
         })
     },[]);
 

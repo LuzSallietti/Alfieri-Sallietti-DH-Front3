@@ -1,78 +1,78 @@
-import React, { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import { ContextGlobal } from "./utils/global.context";
 
-
-
-import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import MUILogout from './utils/MUILogout';
+import PropTypes from "prop-types";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import MUILogout from "./utils/MUILogout";
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
-
 
 const drawerWidth = "100%";
 
 function MUINavBar(props) {
   const { dispatch } = useContext(ContextGlobal);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   const navItems = [
-  <Link  style={{color:"#fff"}} to ="/home">Home</Link>,
-  <Link  style={{color:"#fff"}} to ="/contact">Contact</Link>,
-  <Link  style={{color:"#fff"}} to ="/favs">Favs</Link>,
-  <MUILogout    />
-  
-  ]
-
- 
-
-
+    <Link style={{ color: "#fff" }} to="/home">
+      Home
+    </Link>,
+    <Link style={{ color: "#fff" }} to="/contact">
+      Contact
+    </Link>,
+    <Link style={{ color: "#fff" }} to="/favs">
+      Favs
+    </Link>,
+    <MUILogout />,
+  ];
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-  
-
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', backgroundColor:"#1976d2" }}>
-      <Typography variant="h6" sx={{ my: 2, color:"#fff"   }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: "center", backgroundColor: "#1976d2" }}
+    >
+      <Typography variant="h6" sx={{ my: 2, color: "#fff" }}>
         Odonto Index
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem  key={item} disablePadding >
-            <ListItemButton  sx={{ textAlign: 'center' }}>
-              <ListItemText   primary={item}  />
+          <ListItem key={Math.random()} disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
     </Box>
   );
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
@@ -81,22 +81,20 @@ function MUINavBar(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             Odonto Index
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' }}}>
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item}>
-                {item}
-              </Button>
+              <Button key={Math.random()}>{item}</Button>
             ))}
           </Box>
         </Toolbar>
@@ -111,8 +109,11 @@ function MUINavBar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}
@@ -120,7 +121,6 @@ function MUINavBar(props) {
       </Box>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        
       </Box>
     </Box>
   );
@@ -135,13 +135,3 @@ MUINavBar.propTypes = {
 };
 
 export default MUINavBar;
-
-
-
-
-
-
-
-
-
-

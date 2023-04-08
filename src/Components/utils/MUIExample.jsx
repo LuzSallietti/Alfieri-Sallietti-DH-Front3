@@ -25,13 +25,13 @@ const MUIExample = () => {
           </Typography>
           <div className="card-grid">
             <Grid container spacing={2}>
-              {values?.map((dentist) => {
+              {values?.map((dentist) => {                
                 return (
                   <Grid
+                    key={dentist.id}
                     item
                     xs={12}
-                    md={4}
-                    key={dentist.id}
+                    md={4}                   
                     style={{ display: "flex", justifyContent: "center" }}
                   >
                     <MUICard

@@ -1,30 +1,27 @@
-import { useState } from "react";
-import { styled } from "@mui/material/styles";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { ContextGlobal } from "./global.context";
+import doctor from "../../img/doctor.jpg";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-
-//imports del componente Card
-import doctor from "../../img/doctor.jpg";
-import { useNavigate } from "react-router-dom";
 import { Tooltip } from "@mui/material";
 
 export default function MUICard({ dentist }) {
   //esto de abajo debe manejarse en el estado GLOBAL
-  const [editClicked, setEditClicked] = useState(false);
+  const { state, dispatch } = useContext(ContextGlobal);
+  const isFavorite = state.data.some(element => element.id === dentist.id);
 
   //lógica del icono FAV
-  const handleEditClick = (event) => {
-    event.stopPropagation();
-    setEditClicked(!editClicked);
+  const handleEditClick = (e,item) => {
+    e.stopPropagation()
+    dispatch({ type: "FAVS", payload: item })
   };
 
   //Logica de agregar y retirar de favoritos
@@ -51,10 +48,10 @@ export default function MUICard({ dentist }) {
           <Tooltip title="Add to favorites">
             <IconButton
               aria-label="add to favorites"
-              onClick={handleEditClick}
+              onClick={(e)=> handleEditClick(e,dentist)}
               className="favButton"
             >
-              <FavoriteIcon sx={{ color: editClicked ? "red" : "inherit" }} />
+              <FavoriteIcon sx={{ color: isFavorite ? "red" : "inherit" }} />
             </IconButton>
           </Tooltip>
         }
