@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContextGlobal } from "./global.context";
 import doctor from "../../img/doctor.jpg";
@@ -14,7 +14,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Tooltip } from "@mui/material";
 
 export default function MUICard({ dentist }) {
-  //esto de abajo debe manejarse en el estado GLOBAL
   const { state, dispatch } = useContext(ContextGlobal);
   const isFavorite = state.data.some(element => element.id === dentist.id);
 
@@ -24,9 +23,8 @@ export default function MUICard({ dentist }) {
     dispatch({ type: "FAVS", payload: item })
   };
 
-  //Logica de agregar y retirar de favoritos
+  //navegar a vista de detalle
   const navigate = useNavigate();
-
   const showDetails = () => {
     navigate(`/dentist/${dentist.id}`);
   };
@@ -45,7 +43,7 @@ export default function MUICard({ dentist }) {
           </Avatar>
         }
         action={
-          <Tooltip title="Add to favorites">
+          <Tooltip title={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}>
             <IconButton
               aria-label="add to favorites"
               onClick={(e)=> handleEditClick(e,dentist)}

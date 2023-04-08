@@ -1,8 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGetData } from "../../hooks/useGetData";
 import { endpoint } from "../../Routes/Home";
-
+import doctor from "../../img/doctor.jpg";
+import MUILoading from "./MUILoading";
 //MUI imports
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -10,30 +11,23 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import doctor from "../../img/doctor.jpg";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import MUILoading from "./MUILoading";
+
+
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const MUIDetail = () => {
   const navigate = useNavigate();
   const routeParams = useParams();
   const { values } = useGetData(`${endpoint}/${routeParams.id}`);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    values ? setIsLoading(false) : setIsLoading(true);
-  });
   const handleVolver = () => {
     navigate(-1);
   };
 
   return (
     <>
-    {isLoading ? <MUILoading /> : null}
-      {values && (
+      {values ? (
         <>
           <Box
             display="flex"
@@ -80,6 +74,8 @@ const MUIDetail = () => {
             </Card>
           </Box>
         </>
+      ) : (
+        <MUILoading />
       )}
     </>
   );

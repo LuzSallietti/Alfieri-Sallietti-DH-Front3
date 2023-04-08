@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
 import { ContextGlobal } from "./global.context";
 import Grid from "@mui/material/Grid";
-import MUIFavCard from "./MUIFavCard";
+import MUICard from "./MUICard";
 
 const MUIFavs = () => {
   const { state } = useContext(ContextGlobal);
-
-  //CAMBIAR LA LÓGICA PORQUE LO QUE VA A MAPEAR ES LO QUE TRAIGA de la propiedad data DEL CONTEXTO GLOBAL
+  const hasFavorites = state.data.length > 0;
 
   return (
     <>
       {
         <Grid container spacing={2} style={{ height: "78vh" }}>
-          {state.data.lenght >= 1 ? (
+          {hasFavorites ? (
             state.data.map((dentist) => (
               <Grid
                 item
@@ -21,7 +20,7 @@ const MUIFavs = () => {
                 key={dentist.id}
                 style={{ display: "flex", justifyContent: "space-around" }}
               >
-                <MUIFavCard dentist={dentist} />
+                <MUICard dentist={dentist} />
               </Grid>
             ))
           ) : (
