@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+
+import { useNavigate } from "react-router-dom";
+import { ContextGlobal } from "./utils/global.context";
+
 
 
 import PropTypes from 'prop-types';
@@ -17,6 +21,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import MUILogout from './utils/MUILogout';
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
@@ -24,14 +29,24 @@ import Button from '@mui/material/Button';
 const drawerWidth = "100%";
 
 function MUINavBar(props) {
-  
+  const { dispatch } = useContext(ContextGlobal);
+    const navigate = useNavigate();
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   
   const navItems = [
   <Link  style={{color:"#fff"}} to ="/home">Home</Link>,
   <Link  style={{color:"#fff"}} to ="/contact">Contact</Link>,
-  <Link  style={{color:"#fff"}} to ="/favs">Favs</Link>];
+  <Link  style={{color:"#fff"}} to ="/favs">Favs</Link>,
+  <MUILogout    />
+  
+  ]
+
+ 
+
+
+
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -55,11 +70,7 @@ function MUINavBar(props) {
       </List>
     </Box>
   );
-
   const container = window !== undefined ? () => window().document.body : undefined;
-
-
-
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
