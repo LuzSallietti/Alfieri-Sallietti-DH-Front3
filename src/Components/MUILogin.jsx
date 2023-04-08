@@ -2,109 +2,111 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContextGlobal } from "./utils/global.context";
 import {
+  Typography,
   Card,
   CardContent,
-  TextField,
-  Grid,
   Button,
-  Typography,
+  TextField,
 } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const MUILogin = () => {
-  const navigate = useNavigate();
-
-  //revisar esto con Néstor!
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
   const { dispatch } = useContext(ContextGlobal);
-
-  const onSubmit = (values, props) => {
-    //no sé cómo poner el preventDefault
-    console.log(dispatch);
-    if (values.email && values.password) {
-      dispatch({ type: "LOGGIN", payload: values.email });
-    }
-    props.resetForm(); //no sería necesario?
-    navigate("/home");
-  };
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Ingrese un email válido").required("requerido"),
-    password: Yup.string().min(8, "8 o más caracteres").required("requerido"),
+    password: Yup.string().min(8, "Mínimo 8 caracteres").required("requerido"),
   });
   return (
     <>
       <Card
         style={{
-          maxWidth: 450,
+          width: 380,
+          height: "60vh",
           margin: "0 auto",
           padding: "20px 5px",
           textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         <CardContent>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             Login
           </Typography>
           <Typography
             variant="body2"
             component="p"
-            gutterBottom
             color="textSecondary"
+            gutterBottom
           >
             Ingresa tus datos
           </Typography>
           <Formik
-            initialValues={values}
+            initialValues={{ email: "", password: "" }}
             validationSchema={validationSchema}
-            onSubmit={onSubmit}
+            onSubmit={(values, { setSubmitting }) => {
+              dispatch({ type: "LOGGIN", payload: values.email });
+              navigate("/home");
+              setSubmitting(false);
+            }}
           >
-            {(props) => (
-              <Form style={{ minHeight: 250 }}>
-                <Grid container spacing={1}>
-                  <Grid xs={12} item>
-                    <Field
-                      as={TextField}
-                      name="email"
-                      helperText={<ErrorMessage name="email" />}
-                      error={props.errors.email && props.touched.email}
-                      type="email"
-                      label="email"
-                      placeholder="Ingrese su email"
-                      variant="outlined"
-                      fullWidth
-                      required
-                    />
-                  </Grid>
-                  <Grid xs={12} item>
-                    <Field
-                      as={TextField}
-                      name="password"
-                      helperText={<ErrorMessage name="password" />}
-                      error={props.errors.password && props.touched.password}
-                      type="password"
-                      label="password"
-                      placeholder="Ingrese su password"
-                      variant="outlined"
-                      fullWidth
-                      required
-                    />
-                  </Grid>
-                  <Grid xs={12} item>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                    >
-                      Enviar
-                    </Button>
-                  </Grid>
-                </Grid>
+            {({ isSubmitting }) => (
+              <Form style={{ height: "30vh" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Field
+                    as={TextField}
+                    name="email"
+                    size="small"
+                    type="text"
+                    label="E-mail"
+                    placeholder="Ingrese su e-mail"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    style={{ color: "red", textAlign: "right" }}
+                  />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Field
+                    as={TextField}
+                    name="password"
+                    size="small"
+                    type="password"
+                    label="password"
+                    placeholder="Ingrese su contraseña"
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    style={{ color: "red", textAlign: "right" }}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  size="small"
+                  variant="contained"
+                  disabled={isSubmitting}
+                >
+                  Ingresar
+                </Button>
               </Form>
             )}
           </Formik>
