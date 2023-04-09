@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-
-import { useNavigate } from "react-router-dom";
 import { ContextGlobal } from "./utils/global.context";
 
 import PropTypes from "prop-types";
@@ -22,68 +20,47 @@ import Button from "@mui/material/Button";
 import MUILogout from "./utils/MUILogout";
 
 
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const drawerWidth = "100%";
 
 function MUINavBar(props) {
-  const { dispatch } = useContext(ContextGlobal);
-  const navigate = useNavigate();
-
+  const { state, dispatch } = useContext(ContextGlobal);
+  const {name, color, navbar} = state.theme;
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
-
-  const navItems = [
-    <Link style={{ color: "#fff" }} to="/home">
-      Home
-    </Link>,
-    <Link style={{ color: "#fff" }} to="/contact">
-      Contact
-    </Link>,
-    <Link style={{ color: "#fff" }} to="/favs">
-      Favs
-    </Link>,
-    
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        bgcolor: '#1976d2',
-        color: 'white',
-        borderRadius: 1,
-        p: 3,
-      }}
-    >
-      {theme.palette.mode} mode
-      <IconButton sx={{ sm: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-      </IconButton>
-    </Box>, 
-    <MUILogout />
-  ];
+  const handleTheme = () => {
+    dispatch({ type: "THEME"})
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const navItems = [
+    <Link style={{color:color}} to="/home">
+      Home
+    </Link>,
+    <Link style={{color:color}} to="/contact">
+      Contact
+    </Link>,
+    <Link style={{color:color}} to="/favs">
+      Favs
+    </Link>,
+    <MUILogout />,
+  ];
+
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
-      sx={{ textAlign: "center", backgroundColor: "#1976d2" }}
+      sx={{ textAlign: "center", backgroundColor: navbar }}
     >
-      <Typography variant="h6" sx={{ my: 2, color: "#fff" }}>
+      <Typography variant="h6" sx={{ my: 2, color: color }}>
         Odonto Index
       </Typography>
       <Divider />
@@ -103,7 +80,7 @@ function MUINavBar(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" sx={{backgroundColor: navbar}}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -121,6 +98,29 @@ function MUINavBar(props) {
           >
             Odonto Index
           </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: color,
+              borderRadius: 1,
+              p: 3,
+            }}
+          >
+            {name} mode
+            <IconButton
+              sx={{ sm: 1 }}
+              onClick={handleTheme}
+              color="inherit"
+            >
+              {name === "Dark" ? (
+                <Brightness7Icon />
+              ) : (
+                <Brightness4Icon />
+              )}
+            </IconButton>
+          </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Button key={Math.random()}>{item}</Button>

@@ -32,6 +32,7 @@ const MUILogin = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "space-between",
+          backgroundColor: "#d8ebf4",
         }}
       >
         <CardContent>
@@ -90,7 +91,7 @@ const MUILogin = () => {
                     name="password"
                     size="small"
                     type="password"
-                    label="password"
+                    label="Password"
                     placeholder="Ingrese su contraseña"
                   />
                   <ErrorMessage

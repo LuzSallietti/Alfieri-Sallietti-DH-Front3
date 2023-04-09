@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ContextGlobal } from "./utils/global.context";
 import {
   Card,
   CardContent,
@@ -9,14 +10,14 @@ import {
 } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const ContactForm = () => {
-  //Aqui deberan implementar el form completo con sus validaciones
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [name, setName] = useState("");
+  const { state } = useContext(ContextGlobal);
+  const { body, secondary_color, card } = state.theme;
 
   const initialValues = {
     nombre: "",
@@ -27,7 +28,6 @@ const ContactForm = () => {
   };
 
   const onSubmit = (values, props) => {
-    console.log(values.nombre);
     setName(values.nombre);
     props.resetForm();
     setIsSubmitted(true);
@@ -36,31 +36,31 @@ const ContactForm = () => {
     setIsSubmitted(false);
   }
   const validationSchema = Yup.object().shape({
-    nombre: Yup.string().min(" 3 ").required("completar"),
+    nombre: Yup.string().min("3").required("completar"),
     apellido: Yup.string().min("3").required("completar"),
     email: Yup.string().email("Ingrese un email válido").required("completar"),
     telefono: Yup.number("ingrese un numero válido").required("completar"),
   });
   return (
-    <div >
-      
+    <main style={{ backgroundColor: body, padding: "6vh 5vw" }}>
+      <div>
         <Card
-          style={{            
+          style={{
             maxWidth: 380,
             margin: "auto",
             padding: "5px",
             textAlign: "center",
+            backgroundColor: card,
+            color: secondary_color,
           }}
         >
-          <CardContent style={{ height:"75vh"}} >
-            <Typography variant="h5">
-              Contacta con nosotros!
-            </Typography>
+          <CardContent style={{ height: "75vh" }}>
+            <Typography variant="h5">Contacta con nosotros!</Typography>
             <Typography
               variant="body2"
               component="p"
-              color="textSecondary"
-              marginBottom="4vh"
+              color={secondary_color}
+              marginBottom="5vh"
             >
               Completa tus datos y envía tu mensaje
             </Typography>
@@ -70,7 +70,7 @@ const ContactForm = () => {
               onSubmit={onSubmit}
             >
               {(props) => (
-                <Form style={{ minHeight: 380 }}>
+                <Form style={{ minHeight: 380, color: secondary_color }}>
                   <Grid container spacing={1}>
                     <Grid xs={12} sm={6} item>
                       <Field
@@ -84,6 +84,8 @@ const ContactForm = () => {
                         variant="outlined"
                         fullWidth
                         required
+                        inputProps={{ style: { color: secondary_color } }}
+                        InputLabelProps={{ style: { color: secondary_color } }}
                       />
                     </Grid>
 
@@ -98,6 +100,8 @@ const ContactForm = () => {
                         variant="outlined"
                         fullWidth
                         required
+                        inputProps={{ style: { color: secondary_color } }}
+                        InputLabelProps={{ style: { color: secondary_color } }}
                       />
                     </Grid>
 
@@ -113,6 +117,9 @@ const ContactForm = () => {
                         variant="outlined"
                         fullWidth
                         required
+                        autocomplete="off"
+                        inputProps={{ style: { color: secondary_color } }}
+                        InputLabelProps={{ style: { color: secondary_color } }}
                       />
                     </Grid>
                     <Grid xs={12} item>
@@ -127,6 +134,9 @@ const ContactForm = () => {
                         variant="outlined"
                         fullWidth
                         required
+                        autocomplete="off"
+                        inputProps={{ style: { color: secondary_color } }}
+                        InputLabelProps={{ style: { color: secondary_color } }}
                       />
                     </Grid>
                     <Grid xs={12} item>
@@ -140,6 +150,9 @@ const ContactForm = () => {
                         variant="outlined"
                         fullWidth
                         required
+                        autocomplete="off"
+                        inputProps={{ style: { color: secondary_color } }}
+                        InputLabelProps={{ style: { color: secondary_color } }}
                       />
                     </Grid>
                     <Grid xs={12} item>
@@ -158,20 +171,21 @@ const ContactForm = () => {
             </Formik>
           </CardContent>
         </Card>
-      
-      <div >
-        <Snackbar
-          open={isSubmitted}
-          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-          autoHideDuration={3000}
-        >
-          <Alert onClose={handleClose}>
-            Gracias por tu mensaje {name}, nos comunicaremos contigo a la
-            brevedad
-          </Alert>
-        </Snackbar>
+
+        <div>
+          <Snackbar
+            open={isSubmitted}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            autoHideDuration={3000}
+          >
+            <Alert onClose={handleClose}>
+              Gracias por tu mensaje {name}, nos comunicaremos contigo a la
+              brevedad
+            </Alert>
+          </Snackbar>
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 

@@ -11,6 +11,7 @@ const Login = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#e1f5fe",
       }}
     >
       <MUILogin />

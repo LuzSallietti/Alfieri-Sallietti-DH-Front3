@@ -9,18 +9,19 @@ import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Tooltip } from "@mui/material";
 
 export default function MUICard({ dentist }) {
   const { state, dispatch } = useContext(ContextGlobal);
-  const isFavorite = state.data.some(element => element.id === dentist.id);
+  const { secondary_color, card } = state.theme;
+  const isFavorite = state.data.some((element) => element.id === dentist.id);
 
   //lógica del icono FAV
-  const handleEditClick = (e,item) => {
-    e.stopPropagation()
-    dispatch({ type: "FAVS", payload: item })
+  const handleEditClick = (e, item) => {
+    e.stopPropagation();
+    dispatch({ type: "FAVS", payload: item });
   };
 
   //navegar a vista de detalle
@@ -31,37 +32,46 @@ export default function MUICard({ dentist }) {
 
   return (
     <Card
-      sx={{ width: 350, height: "60vh", margin: "0" }}
-      className="card"
+      sx={{
+        width: 350,
+        height: 350,
+        margin: "1vh 0",
+        cursor: "pointer",
+        backgroundColor: card,
+      }}
       onClick={showDetails}
     >
       <CardHeader
         style={{ width: "100%" }}
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: blue[900] }} aria-label="recipe">
             {dentist.name.charAt(0)}
           </Avatar>
         }
         action={
-          <Tooltip title={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}>
+          <Tooltip
+            title={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+          >
             <IconButton
               aria-label="add to favorites"
-              onClick={(e)=> handleEditClick(e,dentist)}
-              className="favButton"
+              onClick={(e) => handleEditClick(e, dentist)}
             >
-              <FavoriteIcon sx={{ color: isFavorite ? "red" : "inherit" }} />
+              <FavoriteIcon
+                sx={{ color: isFavorite ? "#ef5350" : "#9e9e9e" }}
+              />
             </IconButton>
           </Tooltip>
         }
         title={"Dr. " + dentist.name}
+        titleTypographyProps={{ color: secondary_color }}
         subheader={dentist.address.city}
+        subheaderTypographyProps={{ color: secondary_color }}
       />
-
-      <CardMedia component="img" height="194" image={doctor} alt="doctor" />
-      <CardContent style={{ width: "100%" }}>
-        <Typography variant="body2" color="text.secondary">
-          {dentist.company.catchPhrase}
-        </Typography>
+      <Tooltip title="Ver detalle">
+        <CardMedia component="img" height="194" image={doctor} alt="doctor" />
+      </Tooltip>
+      <CardContent style={{ width: "100%", color: secondary_color }}>
+        <Typography variant="body2">{dentist.company.catchPhrase}</Typography>
       </CardContent>
     </Card>
   );
