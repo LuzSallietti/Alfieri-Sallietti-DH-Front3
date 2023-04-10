@@ -23,7 +23,6 @@ const MUIExample = () => {
             gutterBottom
             variant="h4"
             component="div"
-            padding="6vh 0"
             textAlign="center"
           >
             Staff

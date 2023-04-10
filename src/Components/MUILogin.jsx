@@ -32,7 +32,7 @@ const MUILogin = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#d8ebf4",
+          backgroundColor: "#fff",
         }}
       >
         <CardContent>

@@ -3,6 +3,7 @@ import { ContextGlobal } from "./global.context";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import MUICard from "./MUICard";
+import MUIFavsMsg from "./MUIFavsMsg";
 
 const MUIFavs = () => {
   const { state } = useContext(ContextGlobal);
@@ -13,9 +14,9 @@ const MUIFavs = () => {
     <main
       style={{
         backgroundColor: body,
-        padding: "6vh 5vw",
+        
         color: secondary_color,
-        minHeight: "85vh",
+        minHeight: "75vh",
       }}
     >
       <Typography
@@ -41,9 +42,15 @@ const MUIFavs = () => {
             </Grid>
           ))
         ) : (
-          <p>Añade favoritos a tu lista</p>
+          <Grid
+            item
+            xs={12}
+            md={12}
+            style={{ display: "flex", justifyContent: "space-around" }}
+          >
+            <MUIFavsMsg />
+          </Grid>
         )}
-        {/*un componente MUIacá que sirva para el mensaje*/}
       </Grid>
     </main>
   );
