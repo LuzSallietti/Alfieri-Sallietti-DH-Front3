@@ -43,16 +43,16 @@ function MUINavBar(props) {
   };
 
   const navItems = [
-    <Link style={{color:color}} to="/home">
+    <Link key="1" style={{color:color}} to="/home">
       Home
     </Link>,
-    <Link style={{color:color}} to="/contact">
+    <Link key="2t"style={{color:color}} to="/contact">
       Contact
     </Link>,
-    <Link style={{color:color}} to="/favs">
+    <Link key="3" style={{color:color}} to="/favs">
       Favs
     </Link>,
-    <MUILogout />,
+    <MUILogout key="4" />,
   ];
 
   const drawer = (
@@ -66,7 +66,7 @@ function MUINavBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={Math.random()} disablePadding>
+          <ListItem key={item.key} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <ListItemText primary={item} />
             </ListItemButton>

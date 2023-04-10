@@ -13,19 +13,16 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
+import { Link } from "react-router-dom";
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
-const MUIDetail = () => {
-  const navigate = useNavigate();
+const MUIDetail = () => {  
   const routeParams = useParams();
   const { values } = useGetData(`${endpoint}/${routeParams.id}`);
   const { state } = useContext(ContextGlobal);
   const { body, color, card, secondary_color } = state.theme;
 
-  const handleVolver = () => {
-    navigate(-1);
-  };
+  
 
   return (
     <main style={{ backgroundColor: body, padding: "6vh 0" }}>
@@ -36,14 +33,14 @@ const MUIDetail = () => {
             flexDirection="column"
             justifyContent="flexStart"
             alignItems="center"
-            height="75vh"
+            height="65vh"
           >
             <Typography
               gutterBottom
               variant="h4"
               component="div"
               marginBottom="6vh"
-              color={color}
+              color={secondary_color}
             >
               Contacto:
             </Typography>
@@ -70,9 +67,9 @@ const MUIDetail = () => {
                   justifyContent: "flex-end",
                 }}
               >
-                <Button size="small" onClick={handleVolver}>
-                  Volver
-                </Button>
+                 <Link key="home" style={{ color: color }} to="/home">
+            <Button size="small">Volver</Button>
+          </Link>
               </CardActions>
             </Card>
           </Box>

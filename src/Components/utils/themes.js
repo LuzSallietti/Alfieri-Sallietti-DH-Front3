@@ -4,9 +4,9 @@ export const themes = {
         color: '#fafafa',
         secondary_color: '#616161',
         navbar: '#0288d1',
-        footer: '#b3e5fc',
-        body: '#e1f5fe',
-        card: '#d8ebf4'
+        footer: '#D1D3D5',
+        body: '#fff',
+        card: '#eeeee4'
     },
     dark: {
         name: 'Dark',

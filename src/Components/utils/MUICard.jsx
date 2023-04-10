@@ -9,7 +9,6 @@ import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { blue } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Tooltip } from "@mui/material";
 
@@ -44,7 +43,7 @@ export default function MUICard({ dentist }) {
       <CardHeader
         style={{ width: "100%" }}
         avatar={
-          <Avatar sx={{ bgcolor: blue[900] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: "#e28743" }} aria-label="recipe">
             {dentist.name.charAt(0)}
           </Avatar>
         }
