@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ContextGlobal } from "./global.context";
+import { ContextGlobal } from "./utils/global.context";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
-import FavImg from "../../img/CardFavsImg.png";
+import FavImg from '../img/CardFavsImg.png';
 import Grid from "@mui/material/Grid";
 
-const MUIFavsMsg = () => {
+const FavsMsg = () => {
   const { state } = useContext(ContextGlobal);
   const { color, secondary_color, card } = state.theme;
   const navigate = useNavigate();
@@ -74,4 +74,4 @@ const MUIFavsMsg = () => {
   );
 };
 
-export default MUIFavsMsg;
+export default FavsMsg;

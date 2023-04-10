@@ -1,20 +1,15 @@
 import Contact from '../Routes/Contact'
 import Detail from '../Routes/Detail'
 import Login from '../Routes/Login'
-//import Favs from '../Routes/Favs'
-//import Home from '../Routes/Home'
-
-
-import MUIFavs from '../Components/utils/MUIFavs'
-import MUILogin from '../Components/MUILogin'
-import MUIExample from '../Components/utils/MUIExample'
+import Favs from '../Routes/Favs'
+import Home from '../Routes/Home'
 import Layout from '../Components/Layout/Layout'
-//import Login from '../Components/utils/Example'
+
 export const routes = [
     {
         id: 1,
         path: "/home",
-        Component: MUIExample
+        Component: Home
     },
     {
         id: 2,
@@ -24,7 +19,7 @@ export const routes = [
     {
         id: 3,
         path: "/favs",
-        Component: MUIFavs
+        Component: Favs
     },
     {
         id: 4,

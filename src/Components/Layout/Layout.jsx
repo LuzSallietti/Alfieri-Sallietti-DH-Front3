@@ -1,14 +1,14 @@
 import React from "react";
-import MUINavBar from "../MUINavBar";
-import MUIFooter from "../MUIFooter";
+import NavBar from "../NavBar";
+import Footer from "../Footer";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
     <>
-      <MUINavBar />
+      <NavBar />
       <Outlet />
-      <MUIFooter />
+      <Footer />
     </>
   );
 };

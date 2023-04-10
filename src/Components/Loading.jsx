@@ -1,7 +1,7 @@
 
 import { RotatingLines } from 'react-loader-spinner';
 
-const MUILoading = () => {
+const Loading = () => {
 
     return(
         <div style={{height:"75vh", display:"flex", justifyContent:"center", alignItems:"center"}}>
@@ -9,4 +9,4 @@ const MUILoading = () => {
         </div>
     )
 }
-export default MUILoading
+export default Loading

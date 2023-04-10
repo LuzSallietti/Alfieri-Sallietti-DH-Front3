@@ -11,7 +11,7 @@ import {
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const MUILogin = () => {
+const LoginForm = () => {
   const { dispatch } = useContext(ContextGlobal);
   const navigate = useNavigate();
 
@@ -117,4 +117,4 @@ const MUILogin = () => {
   );
 };
 
-export default MUILogin;
+export default LoginForm;

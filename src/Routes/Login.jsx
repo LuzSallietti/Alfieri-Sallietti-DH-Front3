@@ -1,6 +1,6 @@
 import React from "react";
-import MUILogin from "../Components/MUILogin";
 import Box from "@mui/material/Box";
+import LoginForm from "../Components/LoginForm";
 
 const Login = () => {
   return (
@@ -14,7 +14,7 @@ const Login = () => {
         backgroundColor: "#e1f5fe",
       }}
     >
-      <MUILogin />
+      <LoginForm />
     </Box>
   );
 };

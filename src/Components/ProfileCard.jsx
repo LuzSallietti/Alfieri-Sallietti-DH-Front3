@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ContextGlobal } from "./global.context";
-import doctor from "../../img/doctor.jpg";
+import { ContextGlobal } from "./utils/global.context";
+import doctor from '../img/doctor.jpg';
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Tooltip } from "@mui/material";
 
-export default function MUICard({ dentist }) {
+export default function ProfileCard({ dentist }) {
   const { state, dispatch } = useContext(ContextGlobal);
   const { secondary_color, card } = state.theme;
   const isFavorite = state.data.some((element) => element.id === dentist.id);

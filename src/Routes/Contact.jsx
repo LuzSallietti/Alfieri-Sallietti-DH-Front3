@@ -1,15 +1,12 @@
-import React from 'react'
-import MUIContactForm from '../Components/MUIContactForm';
-
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import React from "react";
+import ContactForm from "../Components/ContactForm";
 
 const Contact = () => {
   return (
     <div>
-      <MUIContactForm/>
+      <ContactForm />
     </div>
-  )
-}
+  );
+};
 
 export default Contact;

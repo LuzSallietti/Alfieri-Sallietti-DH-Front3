@@ -1,13 +1,6 @@
 import React, { useState, useContext } from "react";
 import { ContextGlobal } from "./utils/global.context";
-import {
-  Card,
-  CardMedia,
-  TextField,
-  Grid,
-  Button,
-  Typography,
-} from "@mui/material";
+import { CardMedia, TextField, Grid, Button, Typography } from "@mui/material";
 
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
@@ -51,7 +44,7 @@ const ContactForm = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: body
+        backgroundColor: body,
       }}
     >
       <Grid
@@ -64,11 +57,11 @@ const ContactForm = () => {
           backgroundColor: card,
           display: "flex",
           justifyContent: "space-around",
-          width:"700px"
+          width: "700px",
         }}
       >
         <Grid
-        className="izquierdo"
+          className="izquierdo"
           item
           xs={12}
           md={6}
@@ -77,7 +70,6 @@ const ContactForm = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            
           }}
         >
           <Typography variant="h5" gutterBottom color={secondary_color} sx={{}}>
@@ -87,15 +79,18 @@ const ContactForm = () => {
             component="img"
             alt="card images"
             image={contact}
-            style={{ width: 300, height: "auto", borderRadius: "8px", marginBottom:"5px"}}
-            
+            style={{
+              width: 300,
+              height: "auto",
+              borderRadius: "8px",
+              marginBottom: "5px",
+            }}
           />
-          <Typography variant="body2" component="p" color={secondary_color} >
+          <Typography variant="body2" component="p" color={secondary_color}>
             Envíanos tu mensaje
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6}
-        className="derecho">
+        <Grid item xs={12} md={6} className="derecho">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -117,9 +112,14 @@ const ContactForm = () => {
                       aria-label="nombre"
                       fullWidth
                       required
-                      inputProps={{ style: { color: secondary_color, backgroundColor:body } }}
+                      inputProps={{
+                        style: {
+                          color: secondary_color,
+                          backgroundColor: body,
+                        },
+                      }}
                       InputLabelProps={{
-                        style: { color: secondary_color},
+                        style: { color: secondary_color },
                       }}
                     />
                   </Grid>
@@ -135,7 +135,12 @@ const ContactForm = () => {
                       aria-label="apellido"
                       fullWidth
                       required
-                      inputProps={{ style: { color: secondary_color , backgroundColor:body} }}
+                      inputProps={{
+                        style: {
+                          color: secondary_color,
+                          backgroundColor: body,
+                        },
+                      }}
                       InputLabelProps={{
                         style: { color: secondary_color },
                       }}
@@ -153,8 +158,13 @@ const ContactForm = () => {
                       variant="outlined"
                       aria-label="email"
                       fullWidth
-                      required                      
-                      inputProps={{ style: { color: secondary_color , backgroundColor:body} }}
+                      required
+                      inputProps={{
+                        style: {
+                          color: secondary_color,
+                          backgroundColor: body,
+                        },
+                      }}
                       InputLabelProps={{
                         style: { color: secondary_color },
                       }}
@@ -172,16 +182,21 @@ const ContactForm = () => {
                       variant="outlined"
                       aria-label="telefono"
                       fullWidth
-                      required                      
-                      inputProps={{ style: { color: secondary_color , backgroundColor:body} }}
+                      required
+                      inputProps={{
+                        style: {
+                          color: secondary_color,
+                          backgroundColor: body,
+                        },
+                      }}
                       InputLabelProps={{
                         style: { color: secondary_color },
                       }}
                     />
                   </Grid>
-                  <Grid xs={12} item >
+                  <Grid xs={12} item>
                     <Field
-                    sx={{backgroundColor:body}}
+                      sx={{ backgroundColor: body }}
                       as={TextField}
                       name="mensaje"
                       multiline
@@ -191,8 +206,8 @@ const ContactForm = () => {
                       variant="outlined"
                       aria-label="mensaje"
                       fullWidth
-                      required                      
-                      inputProps={{ style: { color: secondary_color} }}
+                      required
+                      inputProps={{ style: { color: secondary_color } }}
                       InputLabelProps={{
                         style: { color: secondary_color },
                       }}
