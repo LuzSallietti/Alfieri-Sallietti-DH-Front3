@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { ContextGlobal } from "./global.context";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
 import FavImg from "../../img/CardFavsImg.png";
-import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 
 const MUIFavsMsg = () => {
-  const { state, dispatch } = useContext(ContextGlobal);
+  const { state } = useContext(ContextGlobal);
   const { color, secondary_color, card } = state.theme;
+  const navigate = useNavigate();
 
   return (
     <Card sx={{ minWidth: 350, backgroundColor: card }}>
@@ -57,23 +57,21 @@ const MUIFavsMsg = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              marginTop:"30px",
-              borderStyle:"solid",
-              borderColor:color,
-              borderRadius:"8px"
-            
+              marginTop: "30px",
+              borderStyle: "solid",
+              borderColor: color,
+              borderRadius: "8px",
             }}
           />
         </Grid>
       </Grid>
-      <CardActions sx={{ display: "flex", justifyContent: "flex-end", margin:"0" }}>
-        <Link key="home" style={{ color: color }} to="/home">
-          <Button size="small">Volver</Button>
-        </Link>
+      <CardActions
+        sx={{ display: "flex", justifyContent: "flex-end", margin: "0" }}
+      >
+        <Button size="small" onClick={()=> navigate("/home") }>Volver</Button>
       </CardActions>
     </Card>
   );
 };
-
 
 export default MUIFavsMsg;

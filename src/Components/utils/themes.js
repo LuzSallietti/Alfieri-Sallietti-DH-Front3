@@ -1,6 +1,6 @@
 export const themes = {
     light: {
-        name: 'Light',
+        name: 'claro',
         color: '#fafafa',
         secondary_color: '#616161',
         navbar: '#0288d1',
@@ -9,7 +9,7 @@ export const themes = {
         card: '#eeeee4'
     },
     dark: {
-        name: 'Dark',
+        name: 'oscuro',
         color: '#ffffff',
         secondary_color: '#fafafa',
         navbar: '#212121',

@@ -13,10 +13,9 @@ const MUIFavs = () => {
   return (
     <main
       style={{
-        backgroundColor: body,
-        
+        backgroundColor: body,        
         color: secondary_color,
-        minHeight: "75vh",
+        minHeight: "95vh",
       }}
     >
       <Typography

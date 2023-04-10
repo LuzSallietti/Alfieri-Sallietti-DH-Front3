@@ -47,7 +47,7 @@ const ContactForm = () => {
   return (
     <main
       style={{
-        height: "75vh",
+        minHeight: "95vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -153,8 +153,7 @@ const ContactForm = () => {
                       variant="outlined"
                       aria-label="email"
                       fullWidth
-                      required
-                      autocomplete="off"
+                      required                      
                       inputProps={{ style: { color: secondary_color , backgroundColor:body} }}
                       InputLabelProps={{
                         style: { color: secondary_color },
@@ -173,8 +172,7 @@ const ContactForm = () => {
                       variant="outlined"
                       aria-label="telefono"
                       fullWidth
-                      required
-                      autocomplete="off"
+                      required                      
                       inputProps={{ style: { color: secondary_color , backgroundColor:body} }}
                       InputLabelProps={{
                         style: { color: secondary_color },
@@ -193,8 +191,7 @@ const ContactForm = () => {
                       variant="outlined"
                       aria-label="mensaje"
                       fullWidth
-                      required
-                      autocomplete="off"
+                      required                      
                       inputProps={{ style: { color: secondary_color} }}
                       InputLabelProps={{
                         style: { color: secondary_color },

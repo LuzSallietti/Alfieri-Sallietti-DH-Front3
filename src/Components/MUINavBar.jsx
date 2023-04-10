@@ -24,7 +24,6 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const drawerWidth = "100%";
 
@@ -44,13 +43,13 @@ function MUINavBar(props) {
 
   const navItems = [
     <Link key="1" style={{color:color}} to="/home">
-      Home
+      Inicio
     </Link>,
-    <Link key="2t"style={{color:color}} to="/contact">
-      Contact
+    <Link key="2"style={{color:color}} to="/contact">
+      Contacto
     </Link>,
     <Link key="3" style={{color:color}} to="/favs">
-      Favs
+      Favoritos
     </Link>,
     <MUILogout key="4" />,
   ];
@@ -108,7 +107,7 @@ function MUINavBar(props) {
               p: 3,
             }}
           >
-            {name} mode
+            Modo {name}
             <IconButton
               sx={{ sm: 1 }}
               onClick={handleTheme}
@@ -123,7 +122,7 @@ function MUINavBar(props) {
           </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={Math.random()}>{item}</Button>
+              <Button key={item.key}>{item}</Button>
             ))}
           </Box>
         </Toolbar>

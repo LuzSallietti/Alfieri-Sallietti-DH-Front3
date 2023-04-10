@@ -13,16 +13,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
-const MUIDetail = () => {  
+
+const MUIDetail = () => {
   const routeParams = useParams();
   const { values } = useGetData(`${endpoint}/${routeParams.id}`);
   const { state } = useContext(ContextGlobal);
   const { body, color, card, secondary_color } = state.theme;
-
-  
+  const navigate = useNavigate();
 
   return (
     <main style={{ backgroundColor: body, padding: "6vh 0" }}>
@@ -33,7 +31,7 @@ const MUIDetail = () => {
             flexDirection="column"
             justifyContent="flexStart"
             alignItems="center"
-            height="65vh"
+            minHeight="95vh"
           >
             <Typography
               gutterBottom
@@ -67,9 +65,9 @@ const MUIDetail = () => {
                   justifyContent: "flex-end",
                 }}
               >
-                 <Link key="home" style={{ color: color }} to="/home">
-            <Button size="small">Volver</Button>
-          </Link>
+                <Button size="small" onClick={() => navigate(-1)}>
+                  Volver
+                </Button>
               </CardActions>
             </Card>
           </Box>
