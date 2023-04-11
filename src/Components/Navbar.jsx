@@ -22,7 +22,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 const drawerWidth = "100%";
 
-const NavBar = (props) => {
+const Navbar = (props) => {
   const { state, dispatch } = useContext(ContextGlobal);
   const { name, color, navbar } = state.theme;
   const { window } = props;
@@ -141,7 +141,7 @@ const NavBar = (props) => {
   );
 };
 
-NavBar.propTypes = {
+Navbar.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -149,4 +149,4 @@ NavBar.propTypes = {
   window: PropTypes.func,
 };
 
-export default NavBar;
+export default Navbar;
